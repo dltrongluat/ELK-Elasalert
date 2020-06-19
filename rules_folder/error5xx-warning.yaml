@@ -1,0 +1,27 @@
+name: Error Code 5xx - Warning
+type: frequency
+index: filebeat-*
+num_events: 1
+timeframe:
+  minutes: 1
+num_events: 1
+filter:
+- query:
+    query_string:
+      query: "response: [500 TO 505]"
+alert_text: |-
+  Alert {} is detected.
+  From ClientIP: {}
+  - HTTP Code: {}
+  - Host IP: {} 
+  - count : {}
+alert_text_args:
+  - name
+  - clientip
+  - response
+  - host.ip
+  - num_hits
+alert:
+- slack:
+    slack_webhook_url: "https://hooks.slack.com/services/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"
+    slack_username_override: "elasalert"

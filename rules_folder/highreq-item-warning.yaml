@@ -1,0 +1,22 @@
+name: High Throuhput On Route Item - Warning
+type: frequency
+index: filebeat-*
+timeframe:
+  minutes: 1
+num_events: 500
+filter:
+- query:
+    query_string:
+      query: "request:/item/.*"
+alert_text: |-
+  Alert {} is detected.
+  - count : {}
+  - request on route: {}
+alert_text_args:
+  - name
+  - num_hits
+  - request
+alert:
+- slack:
+    slack_webhook_url: "https://hooks.slack.com/services/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"
+    slack_username_override: "elasalert"

@@ -1,0 +1,26 @@
+name: Error Code 4xx - Critical
+type: frequency
+index: filebeat-*
+timeframe:
+  minutes: 1
+num_events: 10
+filter:
+- query:
+    query_string:
+      query: "response: [400 TO 499]"
+alert_text: |-
+  Alert {} is detected.
+  From ClientIP: {}
+  - HTTP Code: {}
+  - Host IP: {}
+  - count : {}
+alert_text_args:
+  - name
+  - clientip
+  - response
+  - host.ip
+  - num_hits
+alert:
+- slack:
+    slack_webhook_url: "https://hooks.slack.com/services/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"
+    slack_username_override: "elasalert"

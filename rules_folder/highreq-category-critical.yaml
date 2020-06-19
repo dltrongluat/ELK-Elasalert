@@ -1,0 +1,22 @@
+name: High Throuhput On Route Category - Critical
+type: frequency
+index: filebeat-*
+timeframe:
+  minutes: 1
+num_events: 5000
+filter:
+- query:
+    query_string:
+      query: "request:/category/.*"
+alert_text: |-
+  Alert {} is detected.
+  - count : {}
+  - route: {}
+alert_text_args:
+  - name
+  - num_hits
+  - request
+alert:
+- slack:
+    slack_webhook_url: "https://hooks.slack.com/services/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"
+    slack_username_override: "elasalert"
