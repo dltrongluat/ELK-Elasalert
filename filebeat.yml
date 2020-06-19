@@ -1,0 +1,30 @@
+
+filebeat.inputs:
+
+
+- type: log
+  enabled: true
+  paths:
+    - /data/log/*.log
+
+filebeat.config.modules:
+  path: ${path.config}/modules.d/*.yml
+
+  reload.enabled: false
+
+setup.template.settings:
+  index.number_of_shards: 1
+  #index.codec: best_compression
+  #_source.enabled: false
+
+setup.kibana:
+output.logstash:
+  # The Logstash hosts
+  hosts: ["10.10.25.155:5044"]
+
+processors:
+  - add_host_metadata: ~
+  - add_cloud_metadata: ~
+  - add_docker_metadata: ~
+  - add_kubernetes_metadata: ~
+

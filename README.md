@@ -27,11 +27,11 @@ Filebeat config with some Elastalert rules configuration
 
 # Step 5. Get the example log file and in order for filebeat to send log to logstash.
 1. wget  https://devopsplayground.blob.core.windows.net/playground/sample-access-log-20200515.log
-2. split newfile.log split.log to divide to smaller log file , default 1000 lines for each small log file. To split log data 
+2. split sample-access-log-20200515.log split.log to divide to smaller log file , default 1000 lines for each small log file. To split log data 
 3. Put log file to filebeat gather folder, filebeat will send log file to logstash.
 4. Check slack for alerts
 # Step 6. Draw graph in kibana
-
+exported kibana dashboard file export.ndjson ( uploaded config.yaml in the git repo)
 
 
 
